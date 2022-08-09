@@ -1,11 +1,20 @@
-import { Controller, Delete, Get, Patch, Post, Put, Req } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+  Req,
+} from '@nestjs/common';
 import { Request } from 'express';
 
 @Controller('api/v1/task')
 export class TaskController {
-  @Post()
-  method(@Req() req: Request) {
-    return `method ${req.method}`;
+  @Post(':id')
+  method(@Param('id') id: string) {
+    return { id };
   }
 
   @Get()
