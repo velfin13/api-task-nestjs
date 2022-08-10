@@ -22,4 +22,10 @@ export class TaskService {
   findOne(id: string): ITask {
     return this.tasks.find((t) => t.id === id);
   }
+
+  update(id: string, taskDto: TaskDTO): ITask {
+    const newTask = { id, ...taskDto };
+    this.tasks = this.tasks.map((t) => (t.id === id ? newTask : t));
+    return newTask;
+  }
 }
