@@ -1,18 +1,16 @@
-import {
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-  Put,
-  Req,
-} from '@nestjs/common';
-import { Request } from 'express';
+import { TaskDTO } from './dto/task.dto';
+import { Body, Controller, Post } from '@nestjs/common';
+import { TaskService } from './task.service';
 
 @Controller('api/v1/task')
 export class TaskController {
-  @Post(':id')
+  constructor(private readonly taskService: TaskService) {}
+  @Post()
+  create(@Body() taskDTO: TaskDTO) {
+    return this.taskService.create(taskDTO);
+  }
+
+  /*  @Post(':id')
   method(@Param('id') id: string) {
     return { id };
   }
@@ -35,5 +33,5 @@ export class TaskController {
   @Delete()
   methodDelete(@Req() req: Request) {
     return `method ${req.method}`;
-  }
+  } */
 }
