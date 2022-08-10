@@ -5,7 +5,7 @@ import { ITask } from './task.interface';
 
 @Injectable()
 export class TaskService {
-  tasks: ITask[] = [];
+  private tasks: ITask[] = [];
   create(taskDto: TaskDTO): ITask {
     const task = {
       id: uuidv4() as string,
@@ -13,5 +13,9 @@ export class TaskService {
     };
     this.tasks.push(task);
     return task;
+  }
+
+  findAll(): ITask[] {
+    return this.tasks;
   }
 }
